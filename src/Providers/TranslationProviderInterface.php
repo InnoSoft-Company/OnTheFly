@@ -4,5 +4,5 @@ namespace OnTheFly\Core\Providers;
 
 interface TranslationProviderInterface
 {
-  public function translate(array $texts, string $targetLanguage): array;
+    public function translate(array $texts, string $targetLanguage): array;
 }

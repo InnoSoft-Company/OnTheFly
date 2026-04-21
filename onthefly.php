@@ -9,26 +9,27 @@ Text Domain: onthefly
 */
 
 if (!defined('ABSPATH')) {
-  exit;
+    exit;
 }
 
 spl_autoload_register(function ($class) {
-  $prefix = 'OnTheFly\\Core\\';
-  $base_dir = __DIR__ . '/src/';
-  $len = strlen($prefix);
-  if (strncmp($prefix, $class, $len) !== 0) {
-    return;
-  }
-  $relative_class = substr($class, $len);
-  $file = $base_dir . str_replace('\\', '/', $relative_class) . '.php';
-  if (file_exists($file)) {
-    require $file;
-  }
+    $prefix = 'OnTheFly\\Core\\';
+    $base_dir = __DIR__ . '/src/';
+    $len = strlen($prefix);
+    if (strncmp($prefix, $class, $len) !== 0) {
+        return;
+    }
+    $relative_class = substr($class, $len);
+    $file = $base_dir . str_replace('\\', '/', $relative_class) . '.php';
+    if (file_exists($file)) {
+        require $file;
+    }
 });
 
-function onthefly_init() {
-  $plugin = new OnTheFly\Core\Plugin();
-  $plugin->run();
+function onthefly_init()
+{
+    $plugin = new OnTheFly\Core\Plugin();
+    $plugin->run();
 }
 
 add_action('plugins_loaded', 'onthefly_init');
