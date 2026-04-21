@@ -1,0 +1,8 @@
+- `[ ]` Create `onthefly.php` (Main plugin file with header)
+- `[ ]` Create `src/Plugin.php`
+- `[ ]` Create `src/TranslationEngine.php`
+- `[ ]` Create `src/Router.php`
+- `[ ]` Create `src/Cache.php`
+- `[ ]` Create `src/Providers/TranslationProviderInterface.php`
+- `[ ]` Create `src/Providers/GoogleTranslate.php`
+- `[ ]` Create `src/Admin/Settings.php`
