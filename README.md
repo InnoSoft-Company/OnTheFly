@@ -1,4 +1,5 @@
 # OnTheFly - Dynamic WordPress Translation Plugin
+![OnTheFly Logo](logo.png)
 
 **OnTheFly** is a professional, high-performance, server-side content translation plugin for WordPress. It acts autonomously by instantly intercepting queries and translating the HTML payload before rendering, utilizing leading cloud providers (Google Translate & DeepL) via a clean, structure-preserving DOM Parser.
 
