@@ -35,8 +35,11 @@ class Plugin
     add_filter('document_title_parts', [$this, 'filterDocumentTitle'], 999);
   }
 
-  public function filterContent(string $content): string
+  public function filterContent($content)
   {
+    if (!is_string($content) || empty($content)) {
+      return $content;
+    }
     $targetLanguage = $this->router->getTargetLanguage();
     if (!$targetLanguage) {
       return $content;
@@ -44,8 +47,11 @@ class Plugin
     return $this->translationEngine->translateHtml($content, $targetLanguage);
   }
 
-  public function filterTitle(string $title): string
+  public function filterTitle($title)
   {
+    if (!is_string($title) || empty($title)) {
+      return $title;
+    }
     $targetLanguage = $this->router->getTargetLanguage();
     if (!$targetLanguage) {
       return $title;
@@ -53,8 +59,11 @@ class Plugin
     return $this->translationEngine->translateText($title, $targetLanguage);
   }
 
-  public function filterLanguageAttributes(string $attributes): string
+  public function filterLanguageAttributes($attributes)
   {
+    if (!is_string($attributes)) {
+      return $attributes;
+    }
     $targetLanguage = $this->router->getTargetLanguage();
     if (!$targetLanguage) {
       return $attributes;
@@ -62,10 +71,13 @@ class Plugin
     return 'lang="' . esc_attr($targetLanguage) . '"';
   }
 
-  public function filterDocumentTitle(array $titleParts): array
+  public function filterDocumentTitle($titleParts)
   {
+    if (!is_array($titleParts)) {
+      return $titleParts;
+    }
     $targetLanguage = $this->router->getTargetLanguage();
-    if (!$targetLanguage || empty($titleParts['title'])) {
+    if (!$targetLanguage || empty($titleParts['title']) || !is_string($titleParts['title'])) {
       return $titleParts;
     }
     $titleParts['title'] = $this->translationEngine->translateText($titleParts['title'], $targetLanguage);

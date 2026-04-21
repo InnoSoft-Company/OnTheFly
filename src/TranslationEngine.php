@@ -17,8 +17,12 @@ class TranslationEngine
     $this->provider = $provider;
   }
 
-  public function translateText(string $text, string $targetLanguage): string
+  public function translateText($text, string $targetLanguage)
   {
+    if (!is_string($text) || empty($text)) {
+      return $text;
+    }
+    
     $cacheKey = md5($text . '_' . $targetLanguage);
     $cached = $this->cache->get($cacheKey);
     if ($cached !== false) {
@@ -32,9 +36,9 @@ class TranslationEngine
     return $result;
   }
 
-  public function translateHtml(string $html, string $targetLanguage): string
+  public function translateHtml($html, string $targetLanguage)
   {
-    if (empty(trim($html))) {
+    if (!is_string($html) || empty(trim($html))) {
       return $html;
     }
 
