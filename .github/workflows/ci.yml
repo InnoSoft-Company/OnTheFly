@@ -1,0 +1,61 @@
+name: CI & Code Quality
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  lint:
+    name: PHP Syntax Check (Lint)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          coverage: none
+          
+      - name: Check PHP Syntax
+        run: |
+          if find . -name "*.php" -type f -exec php -l {} \; | grep -i "Parse error"; then
+            echo "Syntax errors found!"
+            exit 1
+          fi
+
+  test-and-analyze:
+    name: Code Quality & Static Analysis
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer, cs2pr
+          coverage: none
+          
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v3
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.json') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+
+      - name: Install Dependencies
+        run: composer install --prefer-dist --no-progress
+        
+      - name: Check Dependencies Security
+        run: composer audit
+        
+      - name: Run PHP CodeSniffer
+        run: vendor/bin/phpcs -q --report=checkstyle | cs2pr
+
+      - name: Run PHPStan
+        run: vendor/bin/phpstan analyse --error-format=github
