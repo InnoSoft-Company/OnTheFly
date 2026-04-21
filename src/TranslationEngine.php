@@ -95,12 +95,17 @@ class TranslationEngine
     }
 
     if (!empty($textsToApi)) {
-      $apiResults = $this->provider->translate($textsToApi, $targetLanguage);
-      foreach ($apiResults as $i => $translatedPart) {
-        $originalIndex = $indexesToApi[$i];
-        $translatedTexts[$originalIndex] = $translatedPart;
-        $cacheKey = md5($textsToApi[$i] . '_' . $targetLanguage);
-        $this->cache->set($cacheKey, $translatedPart);
+      $chunks = array_chunk($textsToApi, 50);
+      $chunkIndexes = array_chunk($indexesToApi, 50);
+
+      foreach ($chunks as $chunkKey => $chunk) {
+        $apiResults = $this->provider->translate($chunk, $targetLanguage);
+        foreach ($apiResults as $i => $translatedPart) {
+          $originalIndex = $chunkIndexes[$chunkKey][$i];
+          $translatedTexts[$originalIndex] = $translatedPart;
+          $cacheKey = md5($chunk[$i] . '_' . $targetLanguage);
+          $this->cache->set($cacheKey, $translatedPart);
+        }
       }
     }
 
