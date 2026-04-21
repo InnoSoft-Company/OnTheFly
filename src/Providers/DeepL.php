@@ -11,10 +11,10 @@ class DeepL implements TranslationProviderInterface
             return $texts;
         }
 
-        $url = strpos($apiKey, ':fx') !== false 
-            ? 'https://api-free.deepl.com/v2/translate' 
+        $url = strpos($apiKey, ':fx') !== false
+            ? 'https://api-free.deepl.com/v2/translate'
             : 'https://api.deepl.com/v2/translate';
-        
+
         $body = [
             'text' => $texts,
             'target_lang' => strtoupper($targetLanguage),

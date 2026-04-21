@@ -21,11 +21,11 @@ class Router
         if (!$lang && isset($_GET['lang'])) {
             $lang = sanitize_text_field($_GET['lang']);
         }
-        
+
         if ($lang && $this->isValidLanguageCode($lang)) {
             return $lang;
         }
-        
+
         return null;
     }
 

@@ -12,10 +12,10 @@ class Plugin
     {
         $this->router = new Router();
         $this->settings = new Admin\Settings();
-        
+
         $activeProviderStr = get_option('onthefly_active_provider', 'google');
-        $provider = $activeProviderStr === 'deepl' 
-            ? new Providers\DeepL() 
+        $provider = $activeProviderStr === 'deepl'
+            ? new Providers\DeepL()
             : new Providers\GoogleTranslate();
 
         $this->translationEngine = new TranslationEngine(
@@ -28,7 +28,7 @@ class Plugin
     {
         $this->settings->registerHooks();
         $this->router->registerHooks();
-        
+
         add_filter('the_content', [$this, 'filterContent'], 999);
         add_filter('the_title', [$this, 'filterTitle'], 999);
         add_filter('language_attributes', [$this, 'filterLanguageAttributes'], 999);

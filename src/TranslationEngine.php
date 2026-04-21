@@ -22,7 +22,7 @@ class TranslationEngine
         if (!is_string($text) || empty($text)) {
             return $text;
         }
-        
+
         $cacheKey = md5($text . '_' . $targetLanguage);
         $cached = $this->cache->get($cacheKey);
         if ($cached !== false) {
@@ -43,13 +43,13 @@ class TranslationEngine
         }
 
         $dom = new DOMDocument();
-        
+
         $internalErrors = libxml_use_internal_errors(true);
-        
+
         $html = mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8');
-        
+
         $dom->loadHTML($html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-        
+
         libxml_use_internal_errors($internalErrors);
 
         $xpath = new DOMXPath($dom);

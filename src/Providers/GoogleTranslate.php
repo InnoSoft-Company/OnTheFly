@@ -12,7 +12,7 @@ class GoogleTranslate implements TranslationProviderInterface
         }
 
         $url = 'https://translation.googleapis.com/language/translate/v2?key=' . $apiKey;
-        
+
         $body = [
             'q' => $texts,
             'target' => $targetLanguage,
