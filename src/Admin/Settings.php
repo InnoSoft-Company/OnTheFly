@@ -45,7 +45,8 @@ class Settings
 
     public function renderSettingsPage(): void
     {
-        if (isset($_POST['onthefly_clear_cache']) &&
+        if (
+            isset($_POST['onthefly_clear_cache']) &&
             check_admin_referer('onthefly_clear_cache_action', 'onthefly_clear_cache_nonce')
         ) {
             $cache = new Cache();
