@@ -22,7 +22,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/PHP-%3E%3D7.4-8892BF?style=flat-square&logo=php" alt="PHP Version"/>
-  <img src="https://img.shields.io/badge/WordPress-6.x-21759B?style=flat-square&logo=wordpress" alt="WordPress"/>
+  <img src="https://img.shields.io/badge/WordPress-6.9-21759B?style=flat-square&logo=wordpress" alt="WordPress"/>
   <img src="https://img.shields.io/badge/License-GPL--2.0--or--later-blue?style=flat-square" alt="License"/>
   <img src="https://img.shields.io/badge/Code%20Style-PSR--12-green?style=flat-square" alt="Code Style"/>
 </p>

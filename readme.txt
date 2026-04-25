@@ -2,7 +2,7 @@
 Contributors: innosoft
 Tags: translation, automatic translation, google translate, deepl, server-side translation, seo translation
 Requires at least: 5.0
-Tested up to: 6.5
+Tested up to: 6.9
 Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html

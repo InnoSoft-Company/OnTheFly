@@ -25,10 +25,18 @@ class Settings
 
     public function registerSettings(): void
     {
-        register_setting('onthefly_settings_group', 'onthefly_active_provider');
-        register_setting('onthefly_settings_group', 'onthefly_google_api_key');
-        register_setting('onthefly_settings_group', 'onthefly_deepl_api_key');
-        register_setting('onthefly_settings_group', 'onthefly_target_languages');
+        register_setting('onthefly_settings_group', 'onthefly_active_provider', [
+            'sanitize_callback' => 'sanitize_text_field'
+        ]);
+        register_setting('onthefly_settings_group', 'onthefly_google_api_key', [
+            'sanitize_callback' => 'sanitize_text_field'
+        ]);
+        register_setting('onthefly_settings_group', 'onthefly_deepl_api_key', [
+            'sanitize_callback' => 'sanitize_text_field'
+        ]);
+        register_setting('onthefly_settings_group', 'onthefly_target_languages', [
+            'sanitize_callback' => 'sanitize_text_field'
+        ]);
     }
 
     public function renderSettingsPage(): void
