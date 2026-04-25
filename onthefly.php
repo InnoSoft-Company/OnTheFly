@@ -6,6 +6,8 @@ Description: Automatic content translation plugin connecting directly to transla
 Version: 1.0.0
 Author: InnoSoft
 Text Domain: onthefly
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 */
 
 if (!defined('ABSPATH')) {
