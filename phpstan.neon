@@ -5,5 +5,4 @@ parameters:
     paths:
         - src/
         - onthefly.php
-    ignoreErrors:
-        - '#Function __ not found.#'
+    reportUnmatchedIgnoredErrors: false
