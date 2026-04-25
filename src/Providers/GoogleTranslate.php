@@ -2,6 +2,10 @@
 
 namespace OnTheFly\Core\Providers;
 
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 class GoogleTranslate implements TranslationProviderInterface
 {
     public function translate(array $texts, string $targetLanguage): array

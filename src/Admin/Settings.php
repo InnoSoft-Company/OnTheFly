@@ -2,6 +2,10 @@
 
 namespace OnTheFly\Core\Admin;
 
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 use OnTheFly\Core\Cache;
 
 class Settings
@@ -41,7 +45,9 @@ class Settings
 
     public function renderSettingsPage(): void
     {
-        if (isset($_POST['onthefly_clear_cache']) && check_admin_referer('onthefly_clear_cache_action', 'onthefly_clear_cache_nonce')) {
+        if (isset($_POST['onthefly_clear_cache']) &&
+            check_admin_referer('onthefly_clear_cache_action', 'onthefly_clear_cache_nonce')
+        ) {
             $cache = new Cache();
             $cache->clearAll();
             echo '<div class="notice notice-success is-dismissible"><p>Cache cleared successfully.</p></div>';
@@ -60,7 +66,9 @@ class Settings
                         <th scope="row">Active Translation Provider</th>
                         <td>
                             <select name="onthefly_active_provider">
-                                <option value="google" <?php selected($activeProvider, 'google'); ?>>Google Translate</option>
+                                <option value="google" <?php selected($activeProvider, 'google'); ?>>
+                                    Google Translate
+                                </option>
                                 <option value="deepl" <?php selected($activeProvider, 'deepl'); ?>>DeepL</option>
                             </select>
                         </td>
@@ -68,19 +76,28 @@ class Settings
                     <tr valign="top">
                         <th scope="row">Google Translate API Key</th>
                         <td>
-                            <input type="password" name="onthefly_google_api_key" value="<?php echo esc_attr(get_option('onthefly_google_api_key')); ?>" class="regular-text" />
+                            <input type="password"
+                                   name="onthefly_google_api_key"
+                                   value="<?php echo esc_attr(get_option('onthefly_google_api_key')); ?>"
+                                   class="regular-text" />
                         </td>
                     </tr>
                     <tr valign="top">
                         <th scope="row">DeepL API Key</th>
                         <td>
-                            <input type="password" name="onthefly_deepl_api_key" value="<?php echo esc_attr(get_option('onthefly_deepl_api_key')); ?>" class="regular-text" />
+                            <input type="password"
+                                   name="onthefly_deepl_api_key"
+                                   value="<?php echo esc_attr(get_option('onthefly_deepl_api_key')); ?>"
+                                   class="regular-text" />
                         </td>
                     </tr>
                     <tr valign="top">
                         <th scope="row">Target Languages (comma separated)</th>
                         <td>
-                            <input type="text" name="onthefly_target_languages" value="<?php echo esc_attr(get_option('onthefly_target_languages')); ?>" class="regular-text" />
+                            <input type="text"
+                                   name="onthefly_target_languages"
+                                   value="<?php echo esc_attr(get_option('onthefly_target_languages')); ?>"
+                                   class="regular-text" />
                         </td>
                     </tr>
                 </table>

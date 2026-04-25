@@ -3,7 +3,7 @@
 Plugin Name: OnTheFly
 Plugin URI:
 Description: Automatic content translation plugin connecting directly to translation providers.
-Version: 1.0.0
+Version: 1.0.1
 Author: InnoSoft
 Text Domain: onthefly
 License: GPLv2 or later

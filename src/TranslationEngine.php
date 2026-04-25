@@ -2,6 +2,10 @@
 
 namespace OnTheFly\Core;
 
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 use DOMDocument;
 use DOMXPath;
 use OnTheFly\Core\Providers\TranslationProviderInterface;

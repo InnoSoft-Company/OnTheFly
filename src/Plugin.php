@@ -2,6 +2,10 @@
 
 namespace OnTheFly\Core;
 
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 class Plugin
 {
     private $router;

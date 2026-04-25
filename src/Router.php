@@ -2,6 +2,10 @@
 
 namespace OnTheFly\Core;
 
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 class Router
 {
     public function registerHooks(): void
@@ -19,7 +23,7 @@ class Router
     {
         $lang = get_query_var('lang');
         if (!$lang && isset($_GET['lang'])) {
-            $lang = sanitize_text_field($_GET['lang']);
+            $lang = sanitize_text_field(wp_unslash($_GET['lang']));
         }
 
         if ($lang && $this->isValidLanguageCode($lang)) {
